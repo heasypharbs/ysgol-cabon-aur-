@@ -1,0 +1,5 @@
+RewriteCond %{HTTP_HOST} ^aur.sasuhieleekpoma.org$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.aur.sasuhieleekpoma.org$
+RewriteCond %{REQUEST_URI} !public/
+RewriteRule (.*) /public/$1 [L]
+
