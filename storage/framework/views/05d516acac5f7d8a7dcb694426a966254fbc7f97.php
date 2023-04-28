@@ -87,31 +87,32 @@
 						<li class="nav-item"><a class="nav-link" href="/contact">Contact </a></li>
 						
 					</ul>
-					@if (!Auth::user())
+					<?php if(!Auth::user()): ?>
 					<ul class="nav navbar-nav navbar-right">
                         <li><a class="hover-btn-new log orange" href="/login" ><span>Login</span></a></li>
                     </ul>
 
-					@else
+					<?php else: ?>
 					<ul class="nav navbar-nav navbar-right">
                         <li>\
-							 <a class="hover-btn-new log orange" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+							 <a class="hover-btn-new log orange" href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
 								<span>Logout</span>
 						</a>    
-						<form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
-							{{ csrf_field() }}
+						<form id="frm-logout" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
+							<?php echo e(csrf_field()); ?>
+
 						</form>
 							
 						</li>
                     </ul>
-					@endif
+					<?php endif; ?>
 				</div>
 			</div>
 		</nav>
 	</header>
 	<!-- End header -->
 	
-	@yield('content')
+	<?php echo $__env->yieldContent('content'); ?>
 
 
 
@@ -200,4 +201,4 @@
 	});
 </script>
 </body>
-</html>
+</html><?php /**PATH C:\Users\fajob\Documents\GitHub\yca\resources\views/layouts/appHome.blade.php ENDPATH**/ ?>

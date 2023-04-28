@@ -1,5 +1,5 @@
-@extends('layouts.appHome')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 
 <div class="all-title-box">
     <div class="container text-center">
@@ -21,7 +21,7 @@
                          YCA is based at AGCH’s second home; Caban Aur. Caban Aur is set in its own grounds: in a rural setting, surrounded by a nature reserve. Anglesey and nearby Snowdonia are well endowed with learning opportunities: both from the natural environment and from the very large and varied selection of sites of interest; historical, cultural, outdoor activities and recreational.
                     </p>
                     <div class="text-center pricingTable-sign-up col-sm-6">
-                        <a  style="margin: auto positon:auto" href="{{ URL::asset('documents\Ysgol-Caban-Aur-guide-for-parents-Oct-2022.pdf') }}" class="hover-btn-new orange"><span>Download Guide</span></a>
+                        <a  style="margin: auto positon:auto" href="<?php echo e(URL::asset('documents\Ysgol-Caban-Aur-guide-for-parents-Oct-2022.pdf')); ?>" class="hover-btn-new orange"><span>Download Guide</span></a>
                     </div><!-- BUTTON BOX-->
                
                  </div>
@@ -39,7 +39,7 @@
                     </p>                        
                     <div class="text-center pricingTable-sign-up col-sm-6">
                         <p>&nbsp;</p>
-                        <a  style="margin: auto positon:auto" href="{{ URL::asset('documents/Ysgol-Caban-Aur-Guide-for-Learners-Oct-2022.pdf') }}" class="hover-btn-new orange"><span>Download Guide</span></a>
+                        <a  style="margin: auto positon:auto" href="<?php echo e(URL::asset('documents/Ysgol-Caban-Aur-Guide-for-Learners-Oct-2022.pdf')); ?>" class="hover-btn-new orange"><span>Download Guide</span></a>
                     </div><!-- BUTTON BOX-->
                
                  </div>
@@ -50,4 +50,5 @@
         </div>
     </div>
 </div>
-    @endsection
+    <?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.appHome', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\fajob\Documents\GitHub\yca\resources\views/guide.blade.php ENDPATH**/ ?>

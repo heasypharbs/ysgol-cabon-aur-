@@ -145,8 +145,20 @@ class AurController extends Controller
     {
         return view('guide');
     }
-
-
+    public function policies()
+    {
+        return view('policies');
+    }
+    
+    public function curriculum()
+    {
+        return view('curriculum');
+    }
+    public function admission()
+    {
+        return view('admission');
+    }
+ 
     public function Registrations(Request $request)
     {
         if($request)

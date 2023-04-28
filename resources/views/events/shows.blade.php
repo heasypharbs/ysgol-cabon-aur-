@@ -7,14 +7,7 @@
 	 // dd($events);
      
 	?>
-<?php
-    if($request->filled('search')){
-        $search = event::search($request->search)->get();
-    }else{
-        $event = event::get();
-    }
 
-  ?>
 
 <div id="overviews" class="section wb">
     <div class="container">
@@ -56,7 +49,7 @@
                     <div class="site-search-area">
                         <form method="get" id="site-searchform" action="#">
                             <div>
-                                <input class="input-text form-control" name="search-k" id="search-k" placeholder="value="{{ request()->get('search') }}"" type="text">
+                                <input class="input-text form-control" name="search-k" id="search-k" value="{{ request()->get('search') }}" type="text">
                                 <input id="searchsubmit" value="Search" type="submit">
                             </div>
                         </form>
@@ -81,5 +74,5 @@
             </div>
         </div><!-- end row -->
     </div><!-- end container -->
-</div><!-- end section -->
+    </div><!-- end section -->
 @endsection

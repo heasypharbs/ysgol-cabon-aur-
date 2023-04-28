@@ -38,6 +38,16 @@ Route::post('/teachers', [App\Http\Controllers\aurController::class, 'teachers']
 Route::get('/guide', [App\Http\Controllers\aurController::class, 'guide'])->name('guide');
 Route::post('/guides', [App\Http\Controllers\aurController::class, 'guides'])->name('guides');
 
+Route::get('/policies', [App\Http\Controllers\aurController::class, 'policies'])->name('policies');
+Route::post('/policy', [App\Http\Controllers\aurController::class, 'policy'])->name('policy');
+
+Route::get('/curriculum', [App\Http\Controllers\aurController::class, 'curriculum'])->name('curriculum');
+Route::post('/curriculums', [App\Http\Controllers\aurController::class, 'curriculums'])->name('curriculums');
+
+
+Route::get('/admission', [App\Http\Controllers\aurController::class, 'admission'])->name('admission');
+Route::post('/admissions', [App\Http\Controllers\aurController::class, 'admissions'])->name('admissions');
+
 Route::get('/register', [App\Http\Controllers\registrationController::class, 'register'])->name('register');
 Route::post('/Registrations', [App\Http\Controllers\registrationController::class, 'registers'])->name('registers');
 

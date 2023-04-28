@@ -1,6 +1,6 @@
-@extends('layouts.appHome')
-@section('content')
-@if (Auth::user() && Auth::user()->staff_id == "admin")
+
+<?php $__env->startSection('content'); ?>
+<?php if(Auth::user() && Auth::user()->staff_id == "admin"): ?>
 <?php  
  // dd($event);
  //dd($event->title);
@@ -18,28 +18,10 @@
 			<div class="content-error">
 				<div class="hpanel">
                     <div class="panel-body">
-                        <form method="POST"  enctype="multipart/form-data" action="/events/{{ $event->id}}" >
-                           @csrf
-                                @method('PUT')
-                            {{-- <div class="row">
-                                @if(Session::has('error'))
-                                <div class="alert alert-danger">
-                                       {{ Session::get('error') }}
-                                       @php
-                                           Session::forget('error');
-                                       @endphp
-                                       </div>
-                                  @endif
-                                       @if(Session::has('success'))
-                                    <div class="alert alert-success">
-                                       {{ Session::get('success') }}
-                                       @php
-                                           Session::forget('success');
-                                       @endphp
-
-                                       </div>
-
-                               @endif --}}
+                        <form method="POST"  enctype="multipart/form-data" action="/events/<?php echo e($event->id); ?>" >
+                           <?php echo csrf_field(); ?>
+                                <?php echo method_field('PUT'); ?>
+                            
 
                            <div class="container">
                             <div class="col-md-6 offset-md-3">
@@ -48,14 +30,14 @@
                               <hr>
                              
                               <label for="title"><b>Title</b></label>
-                              <input type="text" id="title" name="title"  value="{{ $event->title }}">
+                              <input type="text" id="title" name="title"  value="<?php echo e($event->title); ?>">
 
                               <label for="title"><b>Body</b></label>
-                              <input type="text" id="body" name="body" value="{{ $event->body }}"  >
+                              <input type="text" id="body" name="body" value="<?php echo e($event->body); ?>"  >
 
                                 
                               <label for="title"><b>Image</b></label></br>
-                              <input type="file" name="image" id="image" value="{{ $event->image }}" >
+                              <input type="file" name="image" id="image" value="<?php echo e($event->image); ?>" >
                               <hr>
                                                        
                               <button type="submit" class="registerbtn">Update</button>
@@ -65,7 +47,7 @@
                     </div>
                 </div>
 			</div>
-            @elseif (Auth::user())
+            <?php elseif(Auth::user()): ?>
             
 
             <div id="contact" class="section wb">
@@ -82,7 +64,9 @@
                     </div><!-- end row -->
                 </div><!-- end container -->
             </div><!-- end section -->
-        @else
+        <?php else: ?>
             <script> window.location.replace("/login"); </script>
-    @endif
- @endsection
+    <?php endif; ?>
+ <?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.appHome', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\fajob\Documents\GitHub\yca\resources\views/events/edits.blade.php ENDPATH**/ ?>

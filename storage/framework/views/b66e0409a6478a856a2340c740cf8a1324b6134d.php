@@ -5,8 +5,8 @@ integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw
 integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
 <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css "/>
-@extends('layouts.appHome')
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 
 
 
@@ -22,7 +22,7 @@ integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg
         <hr class="invis"> 
 
 
-        @if (Auth::user() && Auth::user()->staff_id == "admin")
+        <?php if(Auth::user() && Auth::user()->staff_id == "admin"): ?>
             
    
             <div class="pt-20">
@@ -35,17 +35,18 @@ integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg
             </div>
 
             <div class="pt-80">
-                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
+                <a href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault(); document.getElementById('frm-logout').submit();">
                     Logout
                 </a>    
-                <form id="frm-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
+                <form id="frm-logout" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
+                    <?php echo e(csrf_field()); ?>
+
                 </form>
 
             </div>
-    @endif
+    <?php endif; ?>
         <div class="row"> 
-            @foreach ( $events as $event )
+            <?php $__currentLoopData = $events; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $event): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             
             
         
@@ -53,58 +54,60 @@ integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg
                 <div class="blog-item">
                     
                     <div class="image-blog">
-                        <img src="{{ asset('uploads/'.$event->image_path) }}" alt="" class="img-fluid">
+                        <img src="<?php echo e(asset('uploads/'.$event->image_path)); ?>" alt="" class="img-fluid">
                     </div>
                     <div class="meta-info-blog">
-                        <span><i class="fa fa-calendar"></i> <a href="#">{{ $event->created_at }}</a> </span>
+                        <span><i class="fa fa-calendar"></i> <a href="#"><?php echo e($event->created_at); ?></a> </span>
              
                     </div>
                     <div class="blog-title">
-                        <h2><a href="{{ route('events.shows', $event->id) }}" title="">{{ $event->title }}</a></h2>
+                        <h2><a href="<?php echo e(route('events.shows', $event->id)); ?>" title=""><?php echo e($event->title); ?></a></h2>
                     </div>
                     <div class="blog-desc">
-                        <p class="text-justify">{{ Str::limit($event->body, 150) }} </p>
+                        <p class="text-justify"><?php echo e(Str::limit($event->body, 150)); ?> </p>
 
                        
                     </div>
                     <div class="blog-button ">
 
                         <div class="blog-button mb-3">
-							<a class="hover-btn-new orange" href="{{ route('events.shows', $event->id) }}"><span>Read More<span></a>
+							<a class="hover-btn-new orange" href="<?php echo e(route('events.shows', $event->id)); ?>"><span>Read More<span></a>
 						</div>
                             
-                        @if (isset(Auth::user()->id) && Auth::user()->id == $event->user_id)
+                        <?php if(isset(Auth::user()->id) && Auth::user()->id == $event->user_id): ?>
                             
                       
                               <button class=" form-control">  <a class="border-b-2 pb-2 border-dotted italic text-green-500"
-                                    href="{{ route('events.edits',$event->id) }}">
+                                    href="<?php echo e(route('events.edits',$event->id)); ?>">
                                     Edit  &rarr;
                                 </a></button>
 
-                                <form class="pt-2" action="events/{{ $event->id }}" method="POST">
-                                    @csrf
-                                    @method('delete')
+                                <form class="pt-2" action="events/<?php echo e($event->id); ?>" method="POST">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('delete'); ?>
                                     <button class=" form-control  italic text-red-400" type="submit">
                                         Delete  &rarr;
                                     </button>
 
                                 </form>
-                        @endif
+                        <?php endif; ?>
                         
                     </div>
 
                     
                 </div>
             </div><!-- end col -->
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div><!-- end row -->
 
             <div class=" mt-5">
-                {!! $events->withQueryString()->links('pagination::bootstrap-5') !!}
+                <?php echo $events->withQueryString()->links('pagination::bootstrap-5'); ?>
+
            </div>
     </div><!-- end container -->
    
 </div><!-- end section -->
 
-@endsection
+<?php $__env->stopSection(); ?>
   
+<?php echo $__env->make('layouts.appHome', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\fajob\Documents\GitHub\yca\resources\views/events/index.blade.php ENDPATH**/ ?>
